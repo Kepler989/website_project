@@ -30,3 +30,26 @@ function checkout() {
     alert("Checkout successful (demo)");
   }
 }
+
+
+//slider:
+
+let slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+let slideInterval = setInterval(nextSlide, 3000);
+
+function showSlide(index){
+  slides.forEach(slide => slide.classList.remove("active"));
+  slides[index].classList.add("active");
+}
+
+function nextSlide(){
+  currentSlide=(currentSlide+1)%slides.length;
+  showSlide(currentSlide);
+  resetAutoSlide();
+}
+
+function resetAutoSlide(){
+  clearInterval(slideInterval);
+  slideInterval=setInterval(nextSlide,3000);
+}
