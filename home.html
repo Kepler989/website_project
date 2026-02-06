@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Watch Store</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <h2><img src="logo.jpg" id="logo"> WatchStore</h2>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Cart (<span id="cartCount">0</span>)</a>
+      <a href="#">Wishlist</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img alt="hero banner" src="gshock.avif" class="slide active">
+    <img alt="hero banner" src="casio.avif" class="slide">
+    <img alt="hero banner" src="casioed.avif" class="slide">
+  </section>
+
+  <section class="products">
+    <h2>Highlighted Products</h2>
+
+    <div class="product-container">
+
+      <div class="product-card">
+        <img src="casioedprod.avif" />
+        <h3>Casio Edifice</h3>
+        <p>₹25,000</p>
+        <p class="rating">⭐⭐⭐⭐⭐</p>
+        <button onclick="addToCart()">Add to Cart</button>
+        <button class="wishlist" onclick="addToWishlist()">♡ Wishlist</button>
+      </div>
+
+      <div class="product-card">
+        <img src="gshockprod.avif"/>
+        <h3>Casio G-Shock</h3>
+        <p>₹8,000</p>
+        <p class="rating">⭐⭐⭐⭐</p>
+        <button onclick="addToCart()">Add to Cart</button>
+        <button class="wishlist" onclick="addToWishlist()">♡ Wishlist</button>
+      </div>
+
+      <div class="product-card">
+        <img src="casioprod.avif" />
+        <h3>Casio Pro-Trek Men</h3>
+        <p>₹12,000</p>
+        <p class="rating">⭐⭐⭐⭐⭐</p>
+        <button onclick="addToCart()">Add to Cart</button>
+        <button class="wishlist" onclick="addToWishlist()">♡ Wishlist</button>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="coupon">
+    <h2>Apply Coupon</h2>
+    <input type="text" id="couponInput" placeholder="Enter coupon" />
+    <button onclick="applyCoupon()">Apply</button>
+    <p id="couponMsg"></p>
+  </section>
+
+  <section class="checkout">
+    <h2>Checkout (Tentative)</h2>
+    <button onclick="checkout()">Proceed to Checkout</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
