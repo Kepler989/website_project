@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://fonts.cdnfonts.com/css/eurostile" rel="stylesheet">          
+  <link href="https://fonts.cdnfonts.com/css/eurostile-extended" rel="stylesheet">
   <title>Watch Store</title>
   <link rel="stylesheet" href="style.css" />
-</head>
+  </head>
 <body>
   <header class="navbar">
-    <h2><img src="logo.jpg" id="logo"> WatchStore</h2>
+    <h2><img src="/assets/logo.jpg" id="logo"> WatchStore</h2>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Cart (<span id="cartCount">0</span>)</a>
-      <a href="#">Wishlist</a>
+      <a href="home.html">Home</a>
+      <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+      <a href="wishlist.html">Wishlist</a>
     </nav>
   </header>
 
   <section class="hero">
-    <img alt="hero banner" src="gshock.avif" class="slide active">
-    <img alt="hero banner" src="casio.avif" class="slide">
-    <img alt="hero banner" src="casioed.avif" class="slide">
+    <img alt="hero banner" src="/assets/gshock.avif" class="slide active">
+    <img alt="hero banner" src="/assets/casio.avif" class="slide">
+    <img alt="hero banner" src="/assets/casioed.avif" class="slide">
   </section>
 
   <section class="products">
-    <h2>Highlighted Products</h2>
-
+    <h2 style="color:white;">New Arrivals</h2>
+    <br>
+    <br>
     <div class="product-container">
 
       <div class="product-card">
-        <img src="casioedprod.avif" />
+        <img src="/assets/casioedprod.avif" />
         <h3>Casio Edifice</h3>
         <p>₹25,000</p>
         <p class="rating">⭐⭐⭐⭐⭐</p>
@@ -35,7 +38,7 @@
       </div>
 
       <div class="product-card">
-        <img src="gshockprod.avif"/>
+        <img src="/assets/gshockprod.avif"/>
         <h3>Casio G-Shock</h3>
         <p>₹8,000</p>
         <p class="rating">⭐⭐⭐⭐</p>
@@ -44,7 +47,7 @@
       </div>
 
       <div class="product-card">
-        <img src="casioprod.avif" />
+        <img src="/assets/casioprod.avif" />
         <h3>Casio Pro-Trek Men</h3>
         <p>₹12,000</p>
         <p class="rating">⭐⭐⭐⭐⭐</p>
@@ -58,13 +61,13 @@
   <section class="coupon">
     <h2>Apply Coupon</h2>
     <input type="text" id="couponInput" placeholder="Enter coupon" />
-    <button onclick="applyCoupon()">Apply</button>
+    <button onclick="applyCoupon()" class="inputbutton">Apply</button>
     <p id="couponMsg"></p>
   </section>
 
   <section class="checkout">
     <h2>Checkout (Tentative)</h2>
-    <button onclick="checkout()">Proceed to Checkout</button>
+    <button onclick="checkout()" class="inputbutton">Proceed to Checkout</button>
   </section>
 
   <script src="script.js"></script>
