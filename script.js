@@ -15,10 +15,10 @@ function applyCoupon() {
   const msg = document.getElementById("couponMsg");
 
   if (coupon === "WATCH10") {
-    msg.innerText = "Coupon applied! 10% discount 🎉";
+    msg.innerText = "Coupon applied! 10% discount";
     msg.style.color = "green";
   } else {
-    msg.innerText = "Invalid coupon ❌";
+    msg.innerText = "Invalid coupon!";
     msg.style.color = "red";
   }
 }
@@ -27,12 +27,9 @@ function checkout() {
   if (cartCount === 0) {
     alert("Your cart is empty!");
   } else {
-    alert("Checkout successful (demo)");
+    alert("Checkout successful");
   }
 }
-
-
-//slider:
 
 let slides = document.querySelectorAll(".slide");
 let currentSlide = 0;

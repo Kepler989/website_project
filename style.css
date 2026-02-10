@@ -157,6 +157,10 @@ footer{
   width:100%;
   object-fit: contain;
 }
+.product-card img:hover{
+  transform: scale(1.5);
+  transition-duration: 1s;
+}
 .product-container::-webkit-scrollbar {
   height: 8px;
 }
@@ -173,10 +177,12 @@ footer{
   gap:30px;
   flex-wrap: wrap;
   justify-content: center;
+
 }
 .products-card{
   flex: 0 0 auto; 
   background: white;
+  color:black;
   width: 250px;
   padding: 15px;
   text-align: center;
@@ -186,6 +192,10 @@ footer{
   height:200px;
   width:100%;
   object-fit: contain;
+}
+.products-card img:hover{
+  transform: scale(1.2);
+  transition-duration: 1s;
 }
 .products-card button {
   margin-top: 8px;
