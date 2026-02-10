@@ -207,3 +207,18 @@ footer{
 .head{
   margin-left:30px;
 }
+#aboutus{
+  color:white;
+  text-decoration: none;
+}
+#aboutus:hover{
+  cursor: pointer;
+}
+#aboutusdesc{
+  margin-top:100px;
+  margin-left:50px;
+}
+.product-container a{
+  color:black;
+  text-decoration: none;
+}
