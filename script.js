@@ -60,6 +60,61 @@ function checkout() {
   }
 }
 
+//wishlist logic
+
+let wishlist = JSON.parse(localStorage.getItem('watchWishlist')) || [];
+if (document.getElementById("wishlistItemsList")) {
+    renderWishlist();
+}
+
+function addToWishlist(name, price, image) {
+
+  const exists = wishlist.find(item => item.name === name);
+  if (exists) {
+    alert("Item is already in your wishlist!");
+    return;
+  }
+
+  const product = { name, price, image };
+  wishlist.push(product);
+  
+  localStorage.setItem('watchWishlist', JSON.stringify(wishlist));
+  alert(`${name} added to wishlist!`);
+}
+
+function renderWishlist() {
+  const wishlistDisplay = document.getElementById("wishlistItemsList");
+  if (wishlist.length === 0) {
+    wishlistDisplay.innerHTML = "<p>Your wishlist is currently empty.</p>";
+    return;
+  }
+
+  wishlistDisplay.innerHTML = wishlist.map((item, index) => `
+    <div class="wishlist-item" style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+      <img src="${item.image}" style="height: 80px; width: 80px; object-fit: contain; background: white; border-radius: 5px;">
+      <div>
+        <h3>${item.name}</h3>
+        <p>${item.price}</p>
+        <button onclick="removeFromWishlist(${index})" style="color: #ff4d4d; background: none; border: none; cursor: pointer; padding: 0; margin-right: 15px;">Remove</button>
+        <button onclick="moveToCart(${index})" style="color: #00ff00; background: none; border: none; cursor: pointer; padding: 0;">Add to Cart</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function removeFromWishlist(index) {
+  wishlist.splice(index, 1);
+  localStorage.setItem('watchWishlist', JSON.stringify(wishlist));
+  renderWishlist();
+}
+
+function moveToCart(index) {
+  const item = wishlist[index];
+  addToCart(item.name, item.price, item.image); 
+  removeFromWishlist(index);
+}
+
+
 //slider logic
 
 let slides = document.querySelectorAll(".slide");
@@ -81,3 +136,4 @@ function resetAutoSlide(){
   clearInterval(slideInterval);
   slideInterval=setInterval(nextSlide,3000);
 }
+
