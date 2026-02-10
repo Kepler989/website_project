@@ -7,7 +7,7 @@ function addToCart() {
 }
 
 function addToWishlist() {
-  alert("Added to wishlist ❤️");
+  alert("Added to wishlist!");
 }
 
 function applyCoupon() {
