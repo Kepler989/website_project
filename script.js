@@ -224,3 +224,4 @@ function calculateTotal() {
         return sum + numericPrice;
     }, 0);
 }
+//end
