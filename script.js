@@ -137,3 +137,91 @@ function resetAutoSlide(){
   slideInterval=setInterval(nextSlide,3000);
 }
 
+//checkout functionality
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById("orderSummaryItems")) {
+        renderCheckoutSummary();
+    }
+
+    const checkoutForm = document.getElementById("checkoutForm");
+    if (checkoutForm) {
+        checkoutForm.addEventListener("submit", processOrder);
+    }
+});
+
+function renderCheckoutSummary() {
+    const summaryContainer = document.getElementById("orderSummaryItems");
+    const totalDisplay = document.getElementById("orderTotal");
+    
+    if (cart.length === 0) {
+        summaryContainer.innerHTML = "<p>Your cart is empty.</p>";
+        return;
+    }
+
+    let totalSum = calculateTotal();
+    const discountRate = parseFloat(localStorage.getItem('appliedDiscount')) || 0;
+    let discountAmount = totalSum * discountRate;
+    let finalTotal = totalSum - discountAmount;
+    summaryContainer.innerHTML = cart.map(item => `
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span>${item.name}</span>
+            <span>${item.price}</span>
+        </div>
+    `).join('');
+    if (discountRate > 0) {
+        totalDisplay.innerHTML = `
+            <div style="font-size: 0.8em; color: #888;">Original: ₹${totalSum.toLocaleString()}</div>
+            <div style="font-size: 0.8em; color: #00ff00;">Discount (10%): -₹${discountAmount.toLocaleString()}</div>
+            <div style="margin-top: 5px;">Total: ₹${finalTotal.toLocaleString()}</div>
+        `;
+    } else {
+        totalDisplay.innerText = `Total: ₹${totalSum.toLocaleString()}`;
+    }
+}
+
+function processOrder(event) {
+    event.preventDefault(); 
+    const name = document.getElementById("custName").value;
+    
+    alert(`Order Placed Successfully! Thank you, ${name}.`);
+    cart = [];
+    localStorage.removeItem('watchCart');
+    localStorage.removeItem('appliedDiscount'); 
+
+    updateCartUI();
+    window.location.href = "home.html";
+}
+
+//coupon functionality
+
+function applyCoupon() {
+    const couponInput = document.getElementById("couponInput").value.trim().toUpperCase();
+    const couponMsg = document.getElementById("couponMsg");
+    
+    if (cart.length === 0) {
+        couponMsg.innerText = "Cart is empty!";
+        return;
+    }
+
+    if (couponInput === "SAVE10") {
+        localStorage.setItem('appliedDiscount', '0.10'); 
+        
+        let total = calculateTotal(); 
+        let discount = total * 0.10;
+        let finalPrice = total - discount;
+        
+        couponMsg.style.color = "#00ff00";
+        couponMsg.innerHTML = `<b>Coupon Applied!</b><br>New Total: ₹${finalPrice.toLocaleString()}`;
+    } else {
+        localStorage.removeItem('appliedDiscount');
+        couponMsg.style.color = "#ff4d4d";
+        couponMsg.innerText = "Invalid Coupon Code.";
+    }
+}
+function calculateTotal() {
+    return cart.reduce((sum, item) => {
+        const numericPrice = parseInt(item.price.replace(/[₹,]/g, ''));
+        return sum + numericPrice;
+    }, 0);
+}
