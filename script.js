@@ -224,4 +224,28 @@ function calculateTotal() {
         return sum + numericPrice;
     }, 0);
 }
+
+
+//timer functionality
+
+const waitOneSecond = () => new Promise(resolve => setTimeout(resolve, 1000));
+async function runSaleTimer() {
+    const totalSeconds = 10 * 60 * 60; 
+    for (let i = totalSeconds; i >= 0; i--) {
+        let h = Math.floor(i / 3600);
+        let m = Math.floor((i % 3600) / 60);
+        let s = i % 60;
+        const timerDisplay = document.getElementById("timer");
+        if (timerDisplay) {
+            timerDisplay.innerText = `${h}h ${m}m ${s}s`;
+        }
+        if (i === 0) {
+            timerDisplay.innerText = "SALE ENDED";
+            break; 
+        }
+        await waitOneSecond(); 
+    }
+}
+
+runSaleTimer();
 //end
