@@ -202,6 +202,7 @@ function applyCoupon() {
         couponMsg.innerText = "Cart is empty!";
         return;
     }
+    
 
     if (couponInput === "SAVE10") {
         localStorage.setItem('appliedDiscount', '0.10'); 
