@@ -1,10 +1,18 @@
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import Product from "./models/Product.js";
+import User from "./models/User.js";
 
 dotenv.config();
 connectDB();
+await User.deleteMany();
 
+await User.create({
+  name: "Admin",
+  email: "admin@test.com",
+  password: "123456",
+  isAdmin: true
+});
 const seedProducts = async () => {
   await Product.deleteMany();
 
