@@ -18,7 +18,7 @@ connectDB();
 
 const app = express();
 
-// Middlewares
+// Core middleware
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
@@ -30,16 +30,14 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/wishlist", wishlistRoutes);
 
-// Root route
 app.get("/", (req, res) => {
   res.send("API Running");
 });
 
-// Error middleware (MUST be after routes)
+// Error middleware MUST be after routes
 app.use(notFound);
 app.use(errorHandler);
 
-// Start server
 app.listen(process.env.PORT, () =>
   console.log(`Server running on port ${process.env.PORT}`)
 );

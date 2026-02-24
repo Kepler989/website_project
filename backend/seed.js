@@ -5,6 +5,7 @@ import User from "./models/User.js";
 
 dotenv.config();
 connectDB();
+
 await User.deleteMany();
 
 await User.create({
@@ -13,6 +14,7 @@ await User.create({
   password: "123456",
   isAdmin: true
 });
+
 const seedProducts = async () => {
   await Product.deleteMany();
 
