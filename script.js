@@ -3,14 +3,40 @@ let cart = JSON.parse(localStorage.getItem('watchCart')) || [];
 
 updateCartUI();
 
-function addToCart(name, price, image) {
-  const product = { name, price, image };
-  cart.push(product);
+async function addToCart(name, price, image) {
 
-  localStorage.setItem('watchCart', JSON.stringify(cart));
-  
-  updateCartUI();
-  alert(`${name} added to cart!`);
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Please login first");
+    window.location.href = "login.html";
+    return;
+  }
+
+  // Get products from backend to find correct ID
+  const res = await fetch("http://localhost:5000/api/products");
+  const products = await res.json();
+
+  const product = products.find(p => p.name === name);
+
+  if (!product) {
+    alert("Product not found");
+    return;
+  }
+
+  await fetch("http://localhost:5000/api/cart/add", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + token
+    },
+    body: JSON.stringify({
+      productId: product._id,
+      quantity: 1
+    })
+  });
+
+  alert("Added to cart!");
 }
 
 function updateCartUI() {
